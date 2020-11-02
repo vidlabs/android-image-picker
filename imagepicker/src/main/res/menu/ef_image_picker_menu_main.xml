@@ -3,11 +3,17 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools">
     <item
+        android:id="@+id/menu_all"
+        android:icon="@drawable/ef_ic_done_white"
+        android:title="@string/ef_camera"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+    <item
         android:id="@+id/menu_camera"
         android:icon="@drawable/ef_ic_camera_white"
         android:title="@string/ef_camera"
         app:showAsAction="always"
-        tools:ignore="AlwaysShowAction"/>
+        tools:ignore="AlwaysShowAction" />
 
     <item
         android:id="@+id/menu_done"

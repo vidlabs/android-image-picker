@@ -24,5 +24,6 @@
 
     <!--Don\'t Translate-->
     <string name="ef_gif">GIF</string>
+    <string name="ef_select_all">Tout sélectionner</string>
 
 </resources>
