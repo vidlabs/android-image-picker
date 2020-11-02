@@ -114,7 +114,7 @@ public class RecyclerViewManager {
         return false;
     }
 
-    private boolean isDisplayingFolderView() {
+    public boolean isDisplayingFolderView() {
         return recyclerView.getAdapter() == null || recyclerView.getAdapter() instanceof FolderPickerAdapter;
     }
 
@@ -186,6 +186,14 @@ public class RecyclerViewManager {
                 imageAdapter.removeAllSelectedSingleClick();
             }
         }
+        return true;
+    }
+
+    public boolean selectAll() {
+
+
+        imageAdapter.selectAll();
+
         return true;
     }
 
