@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -408,8 +409,10 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
             if (resultCode == RESULT_OK) {
                 presenter.finishCaptureImage(getActivity(), data, getBaseConfig());
             } else if (resultCode == RESULT_CANCELED && isCameraOnly) {
-                presenter.abortCaptureImage();
+                presenter.abortCaptureImage(getContext());
                 interactionListener.cancel();
+            }else {
+                presenter.abortCaptureImage(getContext());
             }
         }
     }
@@ -500,6 +503,10 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
         return false;
     }
 
+    public boolean isDisplayingFolderView() {
+        return recyclerViewManager.isDisplayingFolderView();
+    }
+
     public boolean isShowDoneButton() {
         return recyclerViewManager.isShowDoneButton();
     }
@@ -523,7 +530,8 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
     @Override
     public void finishPickImages(List<Image> images) {
         Intent data = new Intent();
-        data.putParcelableArrayListExtra(IpCons.EXTRA_SELECTED_IMAGES, (ArrayList<? extends Parcelable>) images);
+        ArrayList<Image> imageArrayList = new ArrayList<>(images);
+        data.putParcelableArrayListExtra(IpCons.EXTRA_SELECTED_IMAGES, imageArrayList);
         interactionListener.finishPickImages(data);
     }
 
@@ -563,5 +571,10 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
         emptyTextView.setVisibility(View.VISIBLE);
+    }
+
+    public void selectAll() {
+        Log.d("SELECT_ALL", "true");
+        recyclerViewManager.selectAll();
     }
 }
