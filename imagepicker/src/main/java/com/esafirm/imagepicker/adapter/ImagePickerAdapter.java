@@ -123,6 +123,14 @@ public class ImagePickerAdapter extends BaseListAdapter<ImagePickerAdapter.Image
         });
     }
 
+    public void selectAll() {
+        mutateSelection(() -> {
+            selectedImages.clear();
+            selectedImages.addAll(this.images);
+            notifyDataSetChanged();
+        });
+    }
+
     private void removeSelectedImage(final Image image, final int position) {
         mutateSelection(() -> {
             selectedImages.remove(image);
